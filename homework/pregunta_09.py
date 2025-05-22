@@ -26,6 +26,8 @@ def pregunta_09():
 
     tbl0 = pd.read_csv("files/input/tbl0.tsv", sep="\t")
 
-    tbl0["year"] = pd.to_datetime(tbl0["c3"]).dt.year
+    df1 = tbl0.copy()
+    df1["c3"] = df1["c3"].replace("1999-02-29", "1999-02-28") # ya que no existe el 29 de febrero en este año
+    df1["year"] = pd.to_datetime(df1["c3"]).dt.year.astype(str)
 
-    return tbl0
+    return df1
